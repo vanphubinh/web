@@ -33,9 +33,9 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        post?: never;
         /** Delete a UOM by ID */
-        delete: operations["delete_uom"];
+        post: operations["delete_uom"];
+        delete?: never;
         options?: never;
         head?: never;
         patch?: never;
@@ -88,6 +88,16 @@ export interface components {
         CreateUomInput: {
             name: string;
         };
+        PaginationMeta: {
+            /** Format: int64 */
+            page: number;
+            /** Format: int64 */
+            perPage: number;
+            /** Format: int64 */
+            total: number;
+            /** Format: int64 */
+            totalPages: number;
+        };
         /** @description Pagination request parameters */
         PaginationParams: {
             /** Format: int64 */
@@ -116,6 +126,23 @@ export interface components {
                 "application/json": {
                     /** Format: uuid */
                     id: string;
+                };
+            };
+        };
+        PaginationMeta: {
+            headers: {
+                [name: string]: unknown;
+            };
+            content: {
+                "application/json": {
+                    /** Format: int64 */
+                    page: number;
+                    /** Format: int64 */
+                    perPage: number;
+                    /** Format: int64 */
+                    total: number;
+                    /** Format: int64 */
+                    totalPages: number;
                 };
             };
         };
@@ -266,14 +293,7 @@ export interface operations {
                 content: {
                     "application/json": {
                         data: components["schemas"]["UomDto"][];
-                        /** Format: int64 */
-                        page: number;
-                        /** Format: int64 */
-                        per_page: number;
-                        /** Format: int64 */
-                        total: number;
-                        /** Format: int64 */
-                        total_pages: number;
+                        meta: components["schemas"]["PaginationMeta"];
                     };
                 };
             };

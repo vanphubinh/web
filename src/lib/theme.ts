@@ -1,4 +1,6 @@
-import { createTheme } from '@mantine/core';
+import buttonClasses from '@/components/ui/Button/Button.module.css';
+import inputClasses from '@/components/ui/Input/Input.module.css';
+import { createTheme, Button, TextInput } from '@mantine/core';
 
 export const theme = createTheme({
   breakpoints: {
@@ -25,4 +27,15 @@ export const theme = createTheme({
     ],
   },
   primaryShade: 8,
+  components: {
+    Button: Button.extend({
+      classNames: buttonClasses,
+    }),
+    TextInput: TextInput.extend({
+      classNames: inputClasses,
+      defaultProps: {
+        size: 'sm',
+      },
+    }),
+  },
 });

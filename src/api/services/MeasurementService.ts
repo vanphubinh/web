@@ -818,7 +818,7 @@ export const measurementService: {
     /** @summary Delete a UOM by ID */
     deleteUom: {
         schema: {
-            method: "delete";
+            method: "post";
             url: "/uoms/delete_uom/{id}";
         };
     };
@@ -846,7 +846,7 @@ export const measurementService: {
     },
     deleteUom: {
         schema: {
-            method: "delete",
+            method: "post",
             url: "/uoms/delete_uom/{id}"
         }
     },
@@ -875,10 +875,10 @@ type CreateUomData = unknown;
 type CreateUomError = unknown;
 type CreateUomBody = NonNullable<paths["/uoms/create_uom"]["post"]["requestBody"]>["content"]["application/json"];
 type DeleteUomSchema = {
-    method: "delete";
+    method: "post";
     url: "/uoms/delete_uom/{id}";
 };
-type DeleteUomParameters = paths["/uoms/delete_uom/{id}"]["delete"]["parameters"];
+type DeleteUomParameters = paths["/uoms/delete_uom/{id}"]["post"]["parameters"];
 type DeleteUomData = unknown;
 type DeleteUomError = unknown;
 type DeleteUomBody = undefined;

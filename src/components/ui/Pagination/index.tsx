@@ -18,17 +18,15 @@ export function Pagination({
   isLoading,
 }: PaginationProps) {
   return (
-    <Stack
-      px="md"
-      h={36}
-      justify="center"
+    <div
+      className="flex px-md h-[36px] justify-center px-4"
       style={{
         borderTop: '1px solid var(--mantine-color-gray-3)',
       }}
     >
       {page && onPageChange && (
         <>
-          <Group justify="space-between" visibleFrom="md">
+          <Group justify="space-between" visibleFrom="md" className="w-full">
             <Text size="sm" c="dimmed">
               Hiện{' '}
               <b>
@@ -37,7 +35,7 @@ export function Pagination({
               trong tổng <b>{total}</b>
             </Text>
             <MantinePagination
-              size="sm"
+              size="xs"
               onChange={onPageChange}
               value={page}
               total={lastPage}
@@ -71,6 +69,6 @@ export function Pagination({
           </Group>
         </>
       )}
-    </Stack>
+    </div>
   );
 }
