@@ -4,7 +4,5 @@ export const Route = createFileRoute('/_layout/')({
 });
 
 function App() {
-  return (
-    <div className="text-3xl font-bold">Hello! This is Van Phu Binh</div>
-  );
+  return <div className="text-3xl font-bold">Hello! This is Van Phu Binh</div>;
 }

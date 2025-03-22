@@ -13,6 +13,8 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as LayoutImport } from './routes/_layout'
 import { Route as LayoutIndexImport } from './routes/_layout.index'
+import { Route as LayoutInventoryIndexImport } from './routes/_layout.inventory/index'
+import { Route as LayoutInventoryUomsIndexImport } from './routes/_layout.inventory/uoms/index'
 
 // Create/Update Routes
 
@@ -24,6 +26,18 @@ const LayoutRoute = LayoutImport.update({
 const LayoutIndexRoute = LayoutIndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => LayoutRoute,
+} as any)
+
+const LayoutInventoryIndexRoute = LayoutInventoryIndexImport.update({
+  id: '/inventory/',
+  path: '/inventory/',
+  getParentRoute: () => LayoutRoute,
+} as any)
+
+const LayoutInventoryUomsIndexRoute = LayoutInventoryUomsIndexImport.update({
+  id: '/inventory/uoms/',
+  path: '/inventory/uoms/',
   getParentRoute: () => LayoutRoute,
 } as any)
 
@@ -45,6 +59,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayoutIndexImport
       parentRoute: typeof LayoutImport
     }
+    '/_layout/inventory/': {
+      id: '/_layout/inventory/'
+      path: '/inventory'
+      fullPath: '/inventory'
+      preLoaderRoute: typeof LayoutInventoryIndexImport
+      parentRoute: typeof LayoutImport
+    }
+    '/_layout/inventory/uoms/': {
+      id: '/_layout/inventory/uoms/'
+      path: '/inventory/uoms'
+      fullPath: '/inventory/uoms'
+      preLoaderRoute: typeof LayoutInventoryUomsIndexImport
+      parentRoute: typeof LayoutImport
+    }
   }
 }
 
@@ -52,10 +80,14 @@ declare module '@tanstack/react-router' {
 
 interface LayoutRouteChildren {
   LayoutIndexRoute: typeof LayoutIndexRoute
+  LayoutInventoryIndexRoute: typeof LayoutInventoryIndexRoute
+  LayoutInventoryUomsIndexRoute: typeof LayoutInventoryUomsIndexRoute
 }
 
 const LayoutRouteChildren: LayoutRouteChildren = {
   LayoutIndexRoute: LayoutIndexRoute,
+  LayoutInventoryIndexRoute: LayoutInventoryIndexRoute,
+  LayoutInventoryUomsIndexRoute: LayoutInventoryUomsIndexRoute,
 }
 
 const LayoutRouteWithChildren =
@@ -64,24 +96,35 @@ const LayoutRouteWithChildren =
 export interface FileRoutesByFullPath {
   '': typeof LayoutRouteWithChildren
   '/': typeof LayoutIndexRoute
+  '/inventory': typeof LayoutInventoryIndexRoute
+  '/inventory/uoms': typeof LayoutInventoryUomsIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof LayoutIndexRoute
+  '/inventory': typeof LayoutInventoryIndexRoute
+  '/inventory/uoms': typeof LayoutInventoryUomsIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/_layout': typeof LayoutRouteWithChildren
   '/_layout/': typeof LayoutIndexRoute
+  '/_layout/inventory/': typeof LayoutInventoryIndexRoute
+  '/_layout/inventory/uoms/': typeof LayoutInventoryUomsIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '' | '/'
+  fullPaths: '' | '/' | '/inventory' | '/inventory/uoms'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/_layout' | '/_layout/'
+  to: '/' | '/inventory' | '/inventory/uoms'
+  id:
+    | '__root__'
+    | '/_layout'
+    | '/_layout/'
+    | '/_layout/inventory/'
+    | '/_layout/inventory/uoms/'
   fileRoutesById: FileRoutesById
 }
 
@@ -109,11 +152,21 @@ export const routeTree = rootRoute
     "/_layout": {
       "filePath": "_layout.tsx",
       "children": [
-        "/_layout/"
+        "/_layout/",
+        "/_layout/inventory/",
+        "/_layout/inventory/uoms/"
       ]
     },
     "/_layout/": {
       "filePath": "_layout.index.tsx",
+      "parent": "/_layout"
+    },
+    "/_layout/inventory/": {
+      "filePath": "_layout.inventory/index.tsx",
+      "parent": "/_layout"
+    },
+    "/_layout/inventory/uoms/": {
+      "filePath": "_layout.inventory/uoms/index.tsx",
       "parent": "/_layout"
     }
   }

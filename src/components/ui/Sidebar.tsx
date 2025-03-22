@@ -6,13 +6,7 @@ interface SidebarProps {
 
 export function Sidebar({ children }: SidebarProps) {
   return (
-    <Paper
-      shadow="md"
-      p="md"
-      radius="md"
-      withBorder
-      className="h-full bg-gray-50"
-    >
+    <Paper shadow="md" p="md" radius="md" withBorder className="h-full bg-gray-50">
       <Box>{children}</Box>
     </Paper>
   );

@@ -1,10 +1,10 @@
-import globals from 'globals';
+import noBarrelFiles from 'eslint-plugin-no-barrel-files';
+import reactHooksPlugin from 'eslint-plugin-react-hooks';
 import tseslint from '@typescript-eslint/eslint-plugin';
+import prettierConfig from 'eslint-config-prettier';
 import tsparser from '@typescript-eslint/parser';
 import reactPlugin from 'eslint-plugin-react';
-import reactHooksPlugin from 'eslint-plugin-react-hooks';
-import prettierConfig from 'eslint-config-prettier';
-import noBarrelFiles from 'eslint-plugin-no-barrel-files';
+import globals from 'globals';
 
 export default [
   {
