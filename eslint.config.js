@@ -9,7 +9,7 @@ import globals from 'globals';
 
 export default [
   {
-    ignores: ['node_modules/**', 'dist/**', 'build/**', '**/routeTree.gen.ts'],
+    ignores: ['node_modules/**', 'dist/**', 'build/**', '**/routeTree.gen.ts', '**/src/api/**'],
   },
   {
     languageOptions: {

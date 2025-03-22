@@ -6,4 +6,5 @@ coverage
 .vscode
 .idea
 *.log
-**routeTree.gen.ts 
+**routeTree.gen.ts
+**src/api/**
