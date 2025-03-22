@@ -1,5 +1,8 @@
 import { RouterProvider, createRouter } from '@tanstack/react-router';
+import { QueryClientProvider } from '@tanstack/react-query';
+import { queryClient } from '@/lib/query-client';
 import ReactDOM from 'react-dom/client';
+import { qraft } from '@/lib/qraft';
 import { StrictMode } from 'react';
 
 // Import the generated route tree
@@ -11,7 +14,9 @@ import './styles.css';
 // Create a new router instance
 const router = createRouter({
   routeTree,
-  context: {},
+  context: {
+    qraft,
+  },
   defaultPreload: 'intent',
   scrollRestoration: true,
   defaultStructuralSharing: true,
@@ -31,7 +36,9 @@ if (rootElement && !rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement);
   root.render(
     <StrictMode>
-      <RouterProvider router={router} />
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
     </StrictMode>
   );
 }

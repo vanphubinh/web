@@ -1,12 +1,18 @@
+import { Outlet, createRootRouteWithContext } from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
-import { Outlet, createRootRoute } from '@tanstack/react-router';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { MantineProvider } from '@mantine/core';
+import type { Services } from '@/api/services';
+import { theme } from '@/lib/theme';
 
-export const Route = createRootRoute({
+export const Route = createRootRouteWithContext<{
+  qraft: Services;
+}>()({
   component: () => (
-    <MantineProvider>
+    <MantineProvider theme={theme}>
       <Outlet />
-      <TanStackRouterDevtools />
+      <TanStackRouterDevtools position="bottom-left" />
+      <ReactQueryDevtools initialIsOpen={false} />
     </MantineProvider>
   ),
 });

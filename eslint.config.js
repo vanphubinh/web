@@ -1,6 +1,7 @@
 import noBarrelFiles from 'eslint-plugin-no-barrel-files';
 import reactHooksPlugin from 'eslint-plugin-react-hooks';
 import tseslint from '@typescript-eslint/eslint-plugin';
+import pluginQuery from '@tanstack/eslint-plugin-query';
 import prettierConfig from 'eslint-config-prettier';
 import tsparser from '@typescript-eslint/parser';
 import reactPlugin from 'eslint-plugin-react';
@@ -29,6 +30,7 @@ export default [
       react: reactPlugin,
       'react-hooks': reactHooksPlugin,
       'no-barrel-files': noBarrelFiles.flat,
+      ...pluginQuery.configs['flat/recommended'],
     },
     settings: {
       react: {
