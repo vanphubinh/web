@@ -1,8 +1,6 @@
 import { getRouteApi, useNavigate } from '@tanstack/react-router';
 import { DataTable } from '@/components/ui/DataTable';
 import { generatePagination } from '@/lib/utils';
-import { TextInput } from '@mantine/core';
-import { Search } from 'lucide-react';
 import { qraft } from '@/lib/qraft';
 
 const uomListRouteApi = getRouteApi('/_layout/inventory/uoms/');
@@ -21,9 +19,6 @@ export const ListUoms = () => {
   });
   return (
     <>
-      <div>
-        <TextInput placeholder="Tìm kiếm" className="w-xs" leftSection={<Search size={14} />} />
-      </div>
       <DataTable
         data={uoms?.data ?? []}
         isPending={isPending}

@@ -1,9 +1,9 @@
 .root {
-  --button-height-xs: 30px;
-  --button-height-sm: 36px;
-  --button-height-md: 42px;
-  --button-height-lg: 50px;
-  --button-height-xl: 60px;
+  --button-height-xs: 28px;
+  --button-height-sm: 32px;
+  --button-height-md: 36px;
+  --button-height-lg: 40px;
+  --button-height-xl: 48px;
 
   --button-height-compact-xs: 22px;
   --button-height-compact-sm: 26px;
@@ -11,11 +11,11 @@
   --button-height-compact-lg: 34px;
   --button-height-compact-xl: 40px;
 
-  --button-padding-x-xs: 14px;
-  --button-padding-x-sm: 18px;
-  --button-padding-x-md: 22px;
-  --button-padding-x-lg: 26px;
-  --button-padding-x-xl: 32px;
+  --button-padding-x-xs: 8px;
+  --button-padding-x-sm: 12px;
+  --button-padding-x-md: 16px;
+  --button-padding-x-lg: 20px;
+  --button-padding-x-xl: 24px;
 
   --button-padding-x-compact-xs: 7px;
   --button-padding-x-compact-sm: 8px;

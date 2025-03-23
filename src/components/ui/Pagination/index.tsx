@@ -19,7 +19,7 @@ export function Pagination({
 }: PaginationProps) {
   return (
     <div
-      className="flex px-md h-[36px] justify-center px-4"
+      className="flex px-md h-[37px] justify-center px-6"
       style={{
         borderTop: '1px solid var(--mantine-color-gray-3)',
       }}

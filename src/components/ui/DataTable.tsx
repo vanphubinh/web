@@ -58,14 +58,7 @@ export function DataTable<TData, TValue>({
   );
 
   return (
-    <Card
-      className="flex h-full flex-col"
-      p="0"
-      radius="0"
-      style={{
-        borderTop: '1px solid var(--mantine-color-gray-3)',
-      }}
-    >
+    <Card className="flex h-full flex-col" p="0" radius="0">
       <div
         className="grow overflow-auto"
         onScrollCapture={(e) => {

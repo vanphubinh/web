@@ -10,12 +10,13 @@ function Layout() {
   return (
     <AppShell
       navbar={{
-        width: 250,
+        width: 245,
         breakpoint: 'sm',
       }}
-      padding="md"
+      padding="xs"
+      bg="gray.0"
     >
-      <AppShell.Navbar p="xs" className="border-none">
+      <AppShell.Navbar className="border-none">
         <Sidebar />
       </AppShell.Navbar>
 

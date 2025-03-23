@@ -1,15 +1,8 @@
-import {
-  createFileRoute,
-  getRouteApi,
-  retainSearchParams,
-  useNavigate,
-} from '@tanstack/react-router';
+import { createFileRoute, retainSearchParams } from '@tanstack/react-router';
 import { ListPaginatedUomsParamsSchema } from '@/features/uom/validators';
 import { ListUoms } from '@/features/uom/components/ListUoms';
-import { generatePagination } from '@/lib/utils';
-import { Button, Title } from '@mantine/core';
+import { Button, Card, Text } from '@mantine/core';
 import { Plus } from 'lucide-react';
-import { qraft } from '@/lib/qraft';
 
 export const Route = createFileRoute('/_layout/inventory/uoms/')({
   component: RouteComponent,
@@ -28,11 +21,14 @@ export const Route = createFileRoute('/_layout/inventory/uoms/')({
 
 function RouteComponent() {
   return (
-    <div className="flex flex-col gap-4 h-[calc(100dvh-32px)]">
-      <div className="flex flex-wrap items-center justify-between">
-        <Title order={3}>Đơn vị đo lường</Title>
+    <Card withBorder className="h-[calc(100dvh-20px)]" padding="0" radius="0">
+      <div className="flex flex-wrap items-center justify-between px-6 py-2 border-b border-gray-200">
+        <Text fw={500} size="sm">
+          Đơn vị đo lường
+        </Text>
         <Button
-          rightSection={<Plus size={16} />}
+          size="compact-sm"
+          leftSection={<Plus size={12} />}
           onClick={() => {
             // Handle create UOM action
             console.log('Create UOM clicked');
@@ -41,7 +37,8 @@ function RouteComponent() {
           Tạo
         </Button>
       </div>
+
       <ListUoms />
-    </div>
+    </Card>
   );
 }
