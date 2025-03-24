@@ -4,6 +4,83 @@
  */
 
 export interface paths {
+    "/categories/create_category": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Create a new category
+         * @description Create a new category with the given name and optional parent category
+         */
+        post: operations["create_category"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/categories/delete_category/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Delete category by ID
+         * @description Delete a category by its ID
+         */
+        post: operations["delete_category"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/categories/get_category_by_id/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get a category by ID */
+        get: operations["get_category_by_id"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/categories/list_categories": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get all categories with pagination
+         * @description Get a paginated list of all categories
+         */
+        get: operations["list_categories"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/uoms/create_uom": {
         parameters: {
             query?: never;
@@ -65,7 +142,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** List all UOMs with pagination */
+        /**
+         * Get all UOMs with pagination
+         * @description Get a paginated list of all UOMs
+         */
         get: operations["list_uoms"];
         put?: never;
         post?: never;
@@ -79,6 +159,24 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        /** @description Response type for a single category */
+        CategoryDto: {
+            /** Format: date-time */
+            created_at: string;
+            /** Format: uuid */
+            id: string;
+            name: string;
+            /** Format: uuid */
+            parent_category_id?: string | null;
+            /** Format: date-time */
+            updated_at?: string | null;
+        };
+        /** @description Input type for creating a new category */
+        CreateCategoryInput: {
+            name: string;
+            /** Format: uuid */
+            parent_category_id?: string | null;
+        };
         /** @description Standard response for create operations that returns only the UUID */
         CreateResponse: {
             /** Format: uuid */
@@ -117,6 +215,25 @@ export interface components {
         };
     };
     responses: {
+        /** @description Response type for a single category */
+        CategoryDto: {
+            headers: {
+                [name: string]: unknown;
+            };
+            content: {
+                "application/json": {
+                    /** Format: date-time */
+                    created_at: string;
+                    /** Format: uuid */
+                    id: string;
+                    name: string;
+                    /** Format: uuid */
+                    parent_category_id?: string | null;
+                    /** Format: date-time */
+                    updated_at?: string | null;
+                };
+            };
+        };
         /** @description Standard response for create operations that returns only the UUID */
         CreateResponse: {
             headers: {
@@ -171,6 +288,143 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
+    create_category: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateCategoryInput"];
+            };
+        };
+        responses: {
+            201: components["responses"]["CreateResponse"];
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    delete_category: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description Category ID */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    get_category_by_id: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description The unique identifier of the category to retrieve */
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Category found */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CategoryDto"];
+                };
+            };
+            /** @description Category not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Internal server error */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    list_categories: {
+        parameters: {
+            query?: {
+                /** @description Page number */
+                page?: number;
+                /** @description Items per page */
+                per_page?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Pagination response - a generic wrapper for paginated data */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["CategoryDto"][];
+                        meta: components["schemas"]["PaginationMeta"];
+                    };
+                };
+            };
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     create_uom: {
         parameters: {
             query?: never;

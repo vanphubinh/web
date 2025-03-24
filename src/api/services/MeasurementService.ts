@@ -513,16 +513,26 @@ export interface MeasurementService {
             error: GetUomByIdError;
         };
     };
-    /** @summary List all UOMs with pagination */
+    /**
+     * @summary Get all UOMs with pagination
+     * @description Get a paginated list of all UOMs
+     */
     listUoms: {
-        /** @summary List all UOMs with pagination */
+        /**
+         * @summary Get all UOMs with pagination
+         * @description Get a paginated list of all UOMs
+         */
         cancelQueries<TInfinite extends boolean = false>(filters?: QueryFiltersByParameters<ListUomsSchema, ListUomsData, TInfinite, ListUomsParameters, ListUomsError> | QueryFiltersByQueryKey<ListUomsSchema, ListUomsData, TInfinite, ListUomsParameters, ListUomsError>, options?: CancelOptions): Promise<void>;
-        /** @summary List all UOMs with pagination */
+        /**
+         * @summary Get all UOMs with pagination
+         * @description Get a paginated list of all UOMs
+         */
         getQueryKey(parameters: ListUomsParameters | void): ServiceOperationQueryKey<ListUomsSchema, ListUomsParameters>;
         /**
          * Performs asynchronous data fetching, manages loading states and error handling.
          *
-         * @summary List all UOMs with pagination
+         * @summary Get all UOMs with pagination
+         * @description Get a paginated list of all UOMs
          * @see {@link https://openapi-qraft.github.io/openapi-qraft/docs/hooks/useQuery|`useQuery(...)` documentation}
          * @example Query without parameters
          * ```ts
@@ -541,7 +551,8 @@ export interface MeasurementService {
         /**
          * Performs asynchronous data fetching, manages loading states and error handling.
          *
-         * @summary List all UOMs with pagination
+         * @summary Get all UOMs with pagination
+         * @description Get a paginated list of all UOMs
          * @see {@link https://openapi-qraft.github.io/openapi-qraft/docs/hooks/useQuery|`useQuery(...)` documentation}
          * @example Query without parameters
          * ```ts
@@ -557,21 +568,45 @@ export interface MeasurementService {
          * ```
          */
         useQuery<TData = ListUomsData>(parameters: ServiceOperationQueryKey<ListUomsSchema, ListUomsParameters> | (ListUomsParameters | void), options: Omit<DefinedInitialDataOptions<ListUomsData, ListUomsError, TData, ServiceOperationQueryKey<ListUomsSchema, ListUomsParameters>>, "queryKey">): DefinedUseQueryResult<TData, ListUomsError | Error>;
-        /** @summary List all UOMs with pagination */
+        /**
+         * @summary Get all UOMs with pagination
+         * @description Get a paginated list of all UOMs
+         */
         fetchInfiniteQuery<TPageParam extends ListUomsParameters>(options: ServiceOperationFetchInfiniteQueryOptions<ListUomsSchema, ListUomsData, ListUomsParameters, TPageParam, ListUomsError>): Promise<OperationInfiniteData<ListUomsData, ListUomsParameters>>;
-        /** @summary List all UOMs with pagination */
+        /**
+         * @summary Get all UOMs with pagination
+         * @description Get a paginated list of all UOMs
+         */
         prefetchInfiniteQuery<TPageParam extends ListUomsParameters>(options: ServiceOperationFetchInfiniteQueryOptions<ListUomsSchema, ListUomsData, ListUomsParameters, TPageParam, ListUomsError>): Promise<void>;
-        /** @summary List all UOMs with pagination */
+        /**
+         * @summary Get all UOMs with pagination
+         * @description Get a paginated list of all UOMs
+         */
         ensureInfiniteQueryData<TPageParam extends ListUomsParameters>(options: ServiceOperationEnsureInfiniteQueryDataOptions<ListUomsSchema, ListUomsData, ListUomsParameters, TPageParam, ListUomsError>): Promise<OperationInfiniteData<ListUomsData, ListUomsParameters>>;
-        /** @summary List all UOMs with pagination */
+        /**
+         * @summary Get all UOMs with pagination
+         * @description Get a paginated list of all UOMs
+         */
         fetchQuery(options: ServiceOperationFetchQueryOptions<ListUomsSchema, ListUomsData, ListUomsParameters, ListUomsError> | void): Promise<ListUomsData>;
-        /** @summary List all UOMs with pagination */
+        /**
+         * @summary Get all UOMs with pagination
+         * @description Get a paginated list of all UOMs
+         */
         prefetchQuery(options: ServiceOperationFetchQueryOptions<ListUomsSchema, ListUomsData, ListUomsParameters, ListUomsError> | void): Promise<void>;
-        /** @summary List all UOMs with pagination */
+        /**
+         * @summary Get all UOMs with pagination
+         * @description Get a paginated list of all UOMs
+         */
         ensureQueryData(options: ServiceOperationEnsureQueryDataOptions<ListUomsSchema, ListUomsData, ListUomsParameters, ListUomsError> | void): Promise<ListUomsData>;
-        /** @summary List all UOMs with pagination */
+        /**
+         * @summary Get all UOMs with pagination
+         * @description Get a paginated list of all UOMs
+         */
         getInfiniteQueryData(parameters: ServiceOperationInfiniteQueryKey<ListUomsSchema, ListUomsParameters> | (ListUomsParameters | void)): OperationInfiniteData<ListUomsData, ListUomsParameters> | undefined;
-        /** @summary List all UOMs with pagination */
+        /**
+         * @summary Get all UOMs with pagination
+         * @description Get a paginated list of all UOMs
+         */
         getQueriesData<TInfinite extends boolean = false>(filters?: QueryFiltersByParameters<ListUomsSchema, ListUomsData, TInfinite, ListUomsParameters, ListUomsError> | QueryFiltersByQueryKey<ListUomsSchema, ListUomsData, TInfinite, ListUomsParameters, ListUomsError>): TInfinite extends true ? Array<[
             queryKey: ServiceOperationInfiniteQueryKey<ListUomsSchema, ListUomsParameters>,
             data: NoInfer<OperationInfiniteData<ListUomsData, ListUomsParameters>> | undefined
@@ -579,35 +614,74 @@ export interface MeasurementService {
             queryKey: ServiceOperationQueryKey<ListUomsSchema, ListUomsParameters>,
             data: ListUomsData | undefined
         ]>;
-        /** @summary List all UOMs with pagination */
+        /**
+         * @summary Get all UOMs with pagination
+         * @description Get a paginated list of all UOMs
+         */
         getQueryData(parameters: ServiceOperationQueryKey<ListUomsSchema, ListUomsParameters> | (ListUomsParameters | void)): ListUomsData | undefined;
-        /** @summary List all UOMs with pagination */
+        /**
+         * @summary Get all UOMs with pagination
+         * @description Get a paginated list of all UOMs
+         */
         getQueryState(parameters: ServiceOperationQueryKey<ListUomsSchema, ListUomsParameters> | (ListUomsParameters | void)): QueryState<ListUomsData, ListUomsError> | undefined;
-        /** @summary List all UOMs with pagination */
+        /**
+         * @summary Get all UOMs with pagination
+         * @description Get a paginated list of all UOMs
+         */
         getInfiniteQueryState(parameters: ListUomsParameters | ServiceOperationInfiniteQueryKey<ListUomsSchema, ListUomsParameters> | void): QueryState<OperationInfiniteData<ListUomsData, ListUomsParameters>, ListUomsError> | undefined;
-        /** @summary List all UOMs with pagination */
+        /**
+         * @summary Get all UOMs with pagination
+         * @description Get a paginated list of all UOMs
+         */
         invalidateQueries<TInfinite extends boolean = false>(filters?: InvalidateQueryFilters<ListUomsSchema, ListUomsData, TInfinite, ListUomsParameters, ListUomsError>, options?: InvalidateOptions): Promise<void>;
-        /** @summary List all UOMs with pagination */
+        /**
+         * @summary Get all UOMs with pagination
+         * @description Get a paginated list of all UOMs
+         */
         isFetching<TInfinite extends boolean = false>(filters?: QueryFiltersByParameters<ListUomsSchema, ListUomsData, TInfinite, ListUomsParameters, ListUomsError> | QueryFiltersByQueryKey<ListUomsSchema, ListUomsData, TInfinite, ListUomsParameters, ListUomsError>): number;
-        /** @summary List all UOMs with pagination */
+        /**
+         * @summary Get all UOMs with pagination
+         * @description Get a paginated list of all UOMs
+         */
         <TMeta extends Record<string, any>, TSignal extends AbortSignal = AbortSignal>(options: QueryFnOptionsByQueryKey<ListUomsSchema, ListUomsParameters, TMeta, TSignal> | (QueryFnOptionsByParameters<ListUomsParameters, TMeta, TSignal> | void), client?: (schema: ListUomsSchema, options: {
             parameters: ListUomsParameters;
             signal?: TSignal;
             meta?: TMeta;
         }) => Promise<RequestFnResponse<ListUomsData, ListUomsError>>): Promise<RequestFnResponse<ListUomsData, ListUomsError>>;
-        /** @summary List all UOMs with pagination */
+        /**
+         * @summary Get all UOMs with pagination
+         * @description Get a paginated list of all UOMs
+         */
         refetchQueries<TInfinite extends boolean = false>(filters?: QueryFiltersByParameters<ListUomsSchema, ListUomsData, TInfinite, ListUomsParameters, ListUomsError> | QueryFiltersByQueryKey<ListUomsSchema, ListUomsData, TInfinite, ListUomsParameters, ListUomsError>, options?: RefetchOptions): Promise<void>;
-        /** @summary List all UOMs with pagination */
+        /**
+         * @summary Get all UOMs with pagination
+         * @description Get a paginated list of all UOMs
+         */
         removeQueries<TInfinite extends boolean = false>(filters?: QueryFiltersByParameters<ListUomsSchema, ListUomsData, TInfinite, ListUomsParameters, ListUomsError> | QueryFiltersByQueryKey<ListUomsSchema, ListUomsData, TInfinite, ListUomsParameters, ListUomsError>): void;
-        /** @summary List all UOMs with pagination */
+        /**
+         * @summary Get all UOMs with pagination
+         * @description Get a paginated list of all UOMs
+         */
         resetQueries<TInfinite extends boolean = false>(filters?: QueryFiltersByParameters<ListUomsSchema, ListUomsData, TInfinite, ListUomsParameters, ListUomsError> | QueryFiltersByQueryKey<ListUomsSchema, ListUomsData, TInfinite, ListUomsParameters, ListUomsError>, options?: ResetOptions): Promise<void>;
-        /** @summary List all UOMs with pagination */
+        /**
+         * @summary Get all UOMs with pagination
+         * @description Get a paginated list of all UOMs
+         */
         setInfiniteQueryData(parameters: ListUomsParameters | ServiceOperationInfiniteQueryKey<ListUomsSchema, ListUomsParameters>, updater: Updater<NoInfer<OperationInfiniteData<ListUomsData, ListUomsParameters>> | undefined, NoInfer<OperationInfiniteData<ListUomsData, ListUomsParameters>> | undefined>, options?: SetDataOptions): OperationInfiniteData<ListUomsData, ListUomsParameters> | undefined;
-        /** @summary List all UOMs with pagination */
+        /**
+         * @summary Get all UOMs with pagination
+         * @description Get a paginated list of all UOMs
+         */
         setQueriesData<TInfinite extends boolean = false>(filters: QueryFiltersByParameters<ListUomsSchema, ListUomsData, TInfinite, ListUomsParameters, ListUomsError> | QueryFiltersByQueryKey<ListUomsSchema, ListUomsData, TInfinite, ListUomsParameters, ListUomsError>, updater: Updater<NoInfer<ListUomsData> | undefined, NoInfer<ListUomsData> | undefined>, options?: SetDataOptions): Array<ListUomsData | undefined>;
-        /** @summary List all UOMs with pagination */
+        /**
+         * @summary Get all UOMs with pagination
+         * @description Get a paginated list of all UOMs
+         */
         setQueryData(parameters: (ListUomsParameters | undefined) | ServiceOperationQueryKey<ListUomsSchema, ListUomsParameters>, updater: Updater<NoInfer<ListUomsData> | undefined, NoInfer<ListUomsData> | undefined>, options?: SetDataOptions): ListUomsData | undefined;
-        /** @summary List all UOMs with pagination */
+        /**
+         * @summary Get all UOMs with pagination
+         * @description Get a paginated list of all UOMs
+         */
         getInfiniteQueryKey(parameters: ListUomsParameters | void): ServiceOperationInfiniteQueryKey<ListUomsSchema, ListUomsParameters>;
         /**
          * Performs asynchronous data fetching with support for infinite scrolling scenarios.
@@ -679,7 +753,8 @@ export interface MeasurementService {
         /**
          * Allows you to execute multiple asynchronous data fetching operations concurrently. This is especially useful for managing complex data dependencies in parallel.
          *
-         * @summary List all UOMs with pagination
+         * @summary Get all UOMs with pagination
+         * @description Get a paginated list of all UOMs
          * @see {@link https://openapi-qraft.github.io/openapi-qraft/docs/hooks/useQueries|`useQueries(...)` documentation}
          * @example Multiple queries. Returns `data`, `error`, `isSuccess` and other properties.
          * ```ts
@@ -723,12 +798,16 @@ export interface MeasurementService {
             queries: T;
             combine?: (results: Array<UseQueryResult<ListUomsData, ListUomsError>>) => TCombinedResult;
         }): TCombinedResult;
-        /** @summary List all UOMs with pagination */
+        /**
+         * @summary Get all UOMs with pagination
+         * @description Get a paginated list of all UOMs
+         */
         getQueryKey(parameters: ListUomsParameters | void): ServiceOperationQueryKey<ListUomsSchema, ListUomsParameters>;
         /**
          * Performs asynchronous data fetching, manages loading states and error handling.
          *
-         * @summary List all UOMs with pagination
+         * @summary Get all UOMs with pagination
+         * @description Get a paginated list of all UOMs
          * @see {@link https://openapi-qraft.github.io/openapi-qraft/docs/hooks/useQuery|`useQuery(...)` documentation}
          * @example Query without parameters
          * ```ts
@@ -747,7 +826,8 @@ export interface MeasurementService {
         /**
          * Performs asynchronous data fetching, manages loading states and error handling.
          *
-         * @summary List all UOMs with pagination
+         * @summary Get all UOMs with pagination
+         * @description Get a paginated list of all UOMs
          * @see {@link https://openapi-qraft.github.io/openapi-qraft/docs/hooks/useQuery|`useQuery(...)` documentation}
          * @example Query without parameters
          * ```ts
@@ -786,12 +866,18 @@ export interface MeasurementService {
          * ```
          */
         useSuspenseInfiniteQuery<TPageParam extends ListUomsParameters, TData = ListUomsData>(parameters: ServiceOperationInfiniteQueryKey<ListUomsSchema, ListUomsParameters> | (ListUomsParameters | void), options: Omit<UseSuspenseInfiniteQueryOptions<ListUomsData, ListUomsError, OperationInfiniteData<TData, ListUomsParameters>, ListUomsData, ServiceOperationInfiniteQueryKey<ListUomsSchema, ListUomsParameters>, PartialParameters<TPageParam>>, "queryKey" | "getPreviousPageParam" | "getNextPageParam" | "initialPageParam"> & InfiniteQueryPageParamsOptions<ListUomsData, PartialParameters<TPageParam>>): UseSuspenseInfiniteQueryResult<OperationInfiniteData<TData, ListUomsParameters>, ListUomsError | Error>;
-        /** @summary List all UOMs with pagination */
+        /**
+         * @summary Get all UOMs with pagination
+         * @description Get a paginated list of all UOMs
+         */
         useSuspenseQueries<T extends Array<UseQueryOptionsForUseSuspenseQuery<ListUomsSchema, ListUomsParameters, ListUomsData, ListUomsError>>, TCombinedResult = Array<UseSuspenseQueryResult<ListUomsData, ListUomsError>>>(options: {
             queries: T;
             combine?: (results: Array<WithOptional<UseSuspenseQueryResult<ListUomsData, ListUomsError>, "data">>) => TCombinedResult;
         }): TCombinedResult;
-        /** @summary List all UOMs with pagination */
+        /**
+         * @summary Get all UOMs with pagination
+         * @description Get a paginated list of all UOMs
+         */
         useSuspenseQuery<TData = ListUomsData>(parameters: ServiceOperationQueryKey<ListUomsSchema, ListUomsParameters> | (ListUomsParameters | void), options?: Omit<UseSuspenseQueryOptions<ListUomsData, ListUomsError, TData, ServiceOperationQueryKey<ListUomsSchema, ListUomsParameters>>, "queryKey">): UseSuspenseQueryResult<TData, ListUomsError | Error>;
         schema: ListUomsSchema;
         types: {
@@ -829,7 +915,10 @@ export const measurementService: {
             url: "/uoms/get_uom_by_id/{id}";
         };
     };
-    /** @summary List all UOMs with pagination */
+    /**
+     * @summary Get all UOMs with pagination
+     * @description Get a paginated list of all UOMs
+     */
     listUoms: {
         schema: {
             method: "get";

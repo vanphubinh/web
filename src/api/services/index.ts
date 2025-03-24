@@ -3,10 +3,13 @@
  * Do not make direct changes to the file.
  */
 
+import { CatalogService, catalogService } from "./CatalogService";
 import { MeasurementService, measurementService } from "./MeasurementService";
 export type Services = {
+    catalog: CatalogService;
     measurement: MeasurementService;
 };
 export const services = {
+    catalog: catalogService,
     measurement: measurementService
 } as const;

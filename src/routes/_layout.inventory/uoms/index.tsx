@@ -26,7 +26,7 @@ function RouteComponent() {
   const createModal = useSelector(uomStore, (state) => state.context.createModal);
 
   return (
-    <Card withBorder className="h-[calc(100dvh-20px)]" padding="0" radius="0">
+    <Card withBorder className="h-[calc(100dvh-20px)]" padding="0" radius="sm" shadow="sm">
       <div className="flex flex-wrap items-center justify-between px-6 py-2 border-b border-gray-200">
         <Text fw={500} size="sm">
           Đơn vị đo lường

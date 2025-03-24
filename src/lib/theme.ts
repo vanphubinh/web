@@ -31,11 +31,6 @@ export const theme = createTheme({
   components: {
     Button: Button.extend({
       classNames: buttonClasses,
-      vars: () => ({
-        root: {
-          '--button-fz': rem(12),
-        },
-      }),
     }),
     TextInput: TextInput.extend({
       classNames: inputClasses,
