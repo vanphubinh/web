@@ -1,5 +1,5 @@
 import { RouterProvider, createRouter } from '@tanstack/react-router';
-import { QueryClientProvider } from '@tanstack/react-query';
+import { QueryClientProvider, QueryKey } from '@tanstack/react-query';
 import { queryClient } from '@/lib/query-client';
 import ReactDOM from 'react-dom/client';
 import { qraft } from '@/lib/qraft';
@@ -27,6 +27,14 @@ const router = createRouter({
 declare module '@tanstack/react-router' {
   interface Register {
     router: typeof router;
+  }
+}
+
+declare module '@tanstack/react-query' {
+  interface Register {
+    mutationMeta: {
+      invalidates?: Array<QueryKey>;
+    };
   }
 }
 

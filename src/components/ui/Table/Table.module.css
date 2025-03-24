@@ -5,7 +5,6 @@
 .tr {
   padding: 0;
   height: 36px;
-
   &:hover[data-hover='false'] {
     background-color: white;
   }

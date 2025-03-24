@@ -1,4 +1,4 @@
-import { Group, Pagination as MantinePagination, Stack, Text } from '@mantine/core';
+import { Group, Pagination as MantinePagination, Text } from '@mantine/core';
 
 interface PaginationProps {
   page: number;
