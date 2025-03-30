@@ -81,6 +81,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/products/create_product": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Create a new product
+         * @description Create a new product with payload containing product name, type, subtype, uom, price, cost, category, and description
+         */
+        post: operations["create_product"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/uoms/create_uom": {
         parameters: {
             query?: never;
@@ -161,28 +181,68 @@ export interface components {
     schemas: {
         /** @description Response type for a single category */
         CategoryDto: {
-            /** Format: date-time */
-            created_at: string;
             /** Format: uuid */
             id: string;
             name: string;
             /** Format: uuid */
             parent_category_id?: string | null;
-            /** Format: date-time */
-            updated_at?: string | null;
         };
-        /** @description Input type for creating a new category */
         CreateCategoryInput: {
+            /** @description Category name */
             name: string;
+            /**
+             * Format: uuid
+             * @description Optional parent category ID
+             */
+            parentCategoryId?: string | null;
+        };
+        /** @description Create product request containing all requred fields */
+        CreateProductRequest: {
+            /**
+             * Format: uuid
+             * @description Optional category ID
+             */
+            categoryId?: string | null;
+            /**
+             * @description Product cost
+             * @example 1.0
+             */
+            cost: string;
+            /** @description Optional description */
+            description?: string | null;
+            /** @description Product name */
+            name: string;
+            /**
+             * @description Product price
+             * @example 1.0
+             */
+            price: string;
+            /** @description Product subtype */
+            productSubtype: components["schemas"]["ProductSubtype"];
+            /** @description Product type */
+            productType: components["schemas"]["ProductType"];
+            /**
+             * Format: uuid
+             * @description Unit of measure ID
+             */
+            uomId: string;
+        };
+        /** @description Input type for creating a new product template */
+        CreateProductTemplateInput: {
             /** Format: uuid */
-            parent_category_id?: string | null;
+            categoryId?: string | null;
+            description?: string | null;
+            name: string;
+            productSubtype: components["schemas"]["ProductSubtype"];
+            productType: components["schemas"]["ProductType"];
+            /** Format: uuid */
+            uomId: string;
         };
         /** @description Standard response for create operations that returns only the UUID */
         CreateResponse: {
             /** Format: uuid */
             id: string;
         };
-        /** @description Input type for creating a new UOM */
         CreateUomInput: {
             name: string;
         };
@@ -203,15 +263,39 @@ export interface components {
             /** Format: int64 */
             per_page?: number | null;
         };
-        /** @description Response type for a single UOM */
-        UomDto: {
-            /** Format: date-time */
-            created_at: string;
+        /** @description Response type for a single product */
+        ProductDto: {
+            /** Format: double */
+            cost: number;
+            /** Format: uuid */
+            id: string;
+            /** Format: double */
+            price: number;
+            /** Format: uuid */
+            productTemplateId: string;
+        };
+        /** @enum {string} */
+        ProductSubtype: "standard" | "to_print_packaging" | "printing_mould";
+        /** @description Response type for a single product template */
+        ProductTemplateDto: {
+            /** Format: uuid */
+            categoryId?: string | null;
+            description: string;
             /** Format: uuid */
             id: string;
             name: string;
-            /** Format: date-time */
-            updated_at?: string | null;
+            productSubtype: components["schemas"]["ProductSubtype"];
+            productType: components["schemas"]["ProductType"];
+            /** Format: uuid */
+            uomId: string;
+        };
+        /** @enum {string} */
+        ProductType: "goods" | "service";
+        /** @description Response type for a single UOM */
+        UomDto: {
+            /** Format: uuid */
+            id: string;
+            name: string;
         };
     };
     responses: {
@@ -222,15 +306,11 @@ export interface components {
             };
             content: {
                 "application/json": {
-                    /** Format: date-time */
-                    created_at: string;
                     /** Format: uuid */
                     id: string;
                     name: string;
                     /** Format: uuid */
                     parent_category_id?: string | null;
-                    /** Format: date-time */
-                    updated_at?: string | null;
                 };
             };
         };
@@ -263,6 +343,44 @@ export interface components {
                 };
             };
         };
+        /** @description Response type for a single product */
+        ProductDto: {
+            headers: {
+                [name: string]: unknown;
+            };
+            content: {
+                "application/json": {
+                    /** Format: double */
+                    cost: number;
+                    /** Format: uuid */
+                    id: string;
+                    /** Format: double */
+                    price: number;
+                    /** Format: uuid */
+                    productTemplateId: string;
+                };
+            };
+        };
+        /** @description Response type for a single product template */
+        ProductTemplateDto: {
+            headers: {
+                [name: string]: unknown;
+            };
+            content: {
+                "application/json": {
+                    /** Format: uuid */
+                    categoryId?: string | null;
+                    description: string;
+                    /** Format: uuid */
+                    id: string;
+                    name: string;
+                    productSubtype: components["schemas"]["ProductSubtype"];
+                    productType: components["schemas"]["ProductType"];
+                    /** Format: uuid */
+                    uomId: string;
+                };
+            };
+        };
         /** @description Response type for a single UOM */
         UomDto: {
             headers: {
@@ -270,13 +388,9 @@ export interface components {
             };
             content: {
                 "application/json": {
-                    /** Format: date-time */
-                    created_at: string;
                     /** Format: uuid */
                     id: string;
                     name: string;
-                    /** Format: date-time */
-                    updated_at?: string | null;
                 };
             };
         };
@@ -391,7 +505,7 @@ export interface operations {
                 /** @description Page number */
                 page?: number;
                 /** @description Items per page */
-                per_page?: number;
+                page_size?: number;
             };
             header?: never;
             path?: never;
@@ -411,6 +525,34 @@ export interface operations {
                     };
                 };
             };
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    create_product: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateProductRequest"];
+            };
+        };
+        responses: {
+            201: components["responses"]["CreateResponse"];
             400: {
                 headers: {
                     [name: string]: unknown;

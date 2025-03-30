@@ -1,6 +1,17 @@
+import {
+  createTheme,
+  Button,
+  TextInput,
+  rem,
+  Textarea,
+  Select,
+  Radio,
+  RadioGroup,
+  NumberInput,
+} from '@mantine/core';
 import buttonClasses from '@/components/ui/Button/Button.module.css';
-import { createTheme, Button, TextInput, rem } from '@mantine/core';
 import inputClasses from '@/components/ui/Input/Input.module.css';
+import radioClasses from '@/components/ui/Radio/Radio.module.css';
 
 export const theme = createTheme({
   breakpoints: {
@@ -33,6 +44,32 @@ export const theme = createTheme({
       classNames: buttonClasses,
     }),
     TextInput: TextInput.extend({
+      classNames: inputClasses,
+      defaultProps: {
+        size: 'sm',
+      },
+    }),
+    Textarea: Textarea.extend({
+      classNames: inputClasses,
+      defaultProps: {
+        size: 'sm',
+      },
+    }),
+    Select: Select.extend({
+      classNames: inputClasses,
+      defaultProps: {
+        size: 'sm',
+      },
+    }),
+    Radio: Radio.extend({
+      classNames: radioClasses,
+    }),
+    RadioGroup: RadioGroup.extend({
+      classNames: {
+        root: radioClasses.groupRoot,
+      },
+    }),
+    NumberInput: NumberInput.extend({
       classNames: inputClasses,
       defaultProps: {
         size: 'sm',

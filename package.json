@@ -14,7 +14,7 @@
     "generate-client": "openapi-qraft --plugin tanstack-query-react --plugin openapi-typescript http://localhost:3000/openapi.json --output-dir src/api --service-name-base tags"
   },
   "dependencies": {
-    "@hookform/resolvers": "^4.1.3",
+    "@hookform/resolvers": "^3.10.0",
     "@mantine/core": "^7.17.2",
     "@mantine/hooks": "^7.17.2",
     "@openapi-qraft/react": "^2.2.0",

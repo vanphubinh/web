@@ -4,12 +4,15 @@
  */
 
 import { CatalogService, catalogService } from "./CatalogService";
+import { ProductService, productService } from "./ProductService";
 import { MeasurementService, measurementService } from "./MeasurementService";
 export type Services = {
     catalog: CatalogService;
+    product: ProductService;
     measurement: MeasurementService;
 };
 export const services = {
     catalog: catalogService,
+    product: productService,
     measurement: measurementService
 } as const;

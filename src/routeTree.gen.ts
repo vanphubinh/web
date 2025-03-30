@@ -16,6 +16,7 @@ import { Route as LayoutIndexImport } from './routes/_layout.index'
 import { Route as LayoutInventoryIndexImport } from './routes/_layout.inventory/index'
 import { Route as LayoutInventoryUomsIndexImport } from './routes/_layout.inventory/uoms/index'
 import { Route as LayoutInventoryCategoriesIndexImport } from './routes/_layout.inventory/categories/index'
+import { Route as LayoutInventoryProductsNewImport } from './routes/_layout.inventory/products/new'
 
 // Create/Update Routes
 
@@ -49,6 +50,14 @@ const LayoutInventoryCategoriesIndexRoute =
     getParentRoute: () => LayoutRoute,
   } as any)
 
+const LayoutInventoryProductsNewRoute = LayoutInventoryProductsNewImport.update(
+  {
+    id: '/inventory/products/new',
+    path: '/inventory/products/new',
+    getParentRoute: () => LayoutRoute,
+  } as any,
+)
+
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
@@ -74,6 +83,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayoutInventoryIndexImport
       parentRoute: typeof LayoutImport
     }
+    '/_layout/inventory/products/new': {
+      id: '/_layout/inventory/products/new'
+      path: '/inventory/products/new'
+      fullPath: '/inventory/products/new'
+      preLoaderRoute: typeof LayoutInventoryProductsNewImport
+      parentRoute: typeof LayoutImport
+    }
     '/_layout/inventory/categories/': {
       id: '/_layout/inventory/categories/'
       path: '/inventory/categories'
@@ -96,6 +112,7 @@ declare module '@tanstack/react-router' {
 interface LayoutRouteChildren {
   LayoutIndexRoute: typeof LayoutIndexRoute
   LayoutInventoryIndexRoute: typeof LayoutInventoryIndexRoute
+  LayoutInventoryProductsNewRoute: typeof LayoutInventoryProductsNewRoute
   LayoutInventoryCategoriesIndexRoute: typeof LayoutInventoryCategoriesIndexRoute
   LayoutInventoryUomsIndexRoute: typeof LayoutInventoryUomsIndexRoute
 }
@@ -103,6 +120,7 @@ interface LayoutRouteChildren {
 const LayoutRouteChildren: LayoutRouteChildren = {
   LayoutIndexRoute: LayoutIndexRoute,
   LayoutInventoryIndexRoute: LayoutInventoryIndexRoute,
+  LayoutInventoryProductsNewRoute: LayoutInventoryProductsNewRoute,
   LayoutInventoryCategoriesIndexRoute: LayoutInventoryCategoriesIndexRoute,
   LayoutInventoryUomsIndexRoute: LayoutInventoryUomsIndexRoute,
 }
@@ -114,6 +132,7 @@ export interface FileRoutesByFullPath {
   '': typeof LayoutRouteWithChildren
   '/': typeof LayoutIndexRoute
   '/inventory': typeof LayoutInventoryIndexRoute
+  '/inventory/products/new': typeof LayoutInventoryProductsNewRoute
   '/inventory/categories': typeof LayoutInventoryCategoriesIndexRoute
   '/inventory/uoms': typeof LayoutInventoryUomsIndexRoute
 }
@@ -121,6 +140,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof LayoutIndexRoute
   '/inventory': typeof LayoutInventoryIndexRoute
+  '/inventory/products/new': typeof LayoutInventoryProductsNewRoute
   '/inventory/categories': typeof LayoutInventoryCategoriesIndexRoute
   '/inventory/uoms': typeof LayoutInventoryUomsIndexRoute
 }
@@ -130,6 +150,7 @@ export interface FileRoutesById {
   '/_layout': typeof LayoutRouteWithChildren
   '/_layout/': typeof LayoutIndexRoute
   '/_layout/inventory/': typeof LayoutInventoryIndexRoute
+  '/_layout/inventory/products/new': typeof LayoutInventoryProductsNewRoute
   '/_layout/inventory/categories/': typeof LayoutInventoryCategoriesIndexRoute
   '/_layout/inventory/uoms/': typeof LayoutInventoryUomsIndexRoute
 }
@@ -140,15 +161,22 @@ export interface FileRouteTypes {
     | ''
     | '/'
     | '/inventory'
+    | '/inventory/products/new'
     | '/inventory/categories'
     | '/inventory/uoms'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/inventory' | '/inventory/categories' | '/inventory/uoms'
+  to:
+    | '/'
+    | '/inventory'
+    | '/inventory/products/new'
+    | '/inventory/categories'
+    | '/inventory/uoms'
   id:
     | '__root__'
     | '/_layout'
     | '/_layout/'
     | '/_layout/inventory/'
+    | '/_layout/inventory/products/new'
     | '/_layout/inventory/categories/'
     | '/_layout/inventory/uoms/'
   fileRoutesById: FileRoutesById
@@ -180,6 +208,7 @@ export const routeTree = rootRoute
       "children": [
         "/_layout/",
         "/_layout/inventory/",
+        "/_layout/inventory/products/new",
         "/_layout/inventory/categories/",
         "/_layout/inventory/uoms/"
       ]
@@ -190,6 +219,10 @@ export const routeTree = rootRoute
     },
     "/_layout/inventory/": {
       "filePath": "_layout.inventory/index.tsx",
+      "parent": "/_layout"
+    },
+    "/_layout/inventory/products/new": {
+      "filePath": "_layout.inventory/products/new.tsx",
       "parent": "/_layout"
     },
     "/_layout/inventory/categories/": {
