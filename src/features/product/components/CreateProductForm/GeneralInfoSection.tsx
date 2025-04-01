@@ -19,6 +19,7 @@ export function GeneralInfoSection() {
         control={control}
         label="Tên"
         autosize
+        data-autofocus
         minRows={1}
         withAsterisk
         variant="unstyled"
@@ -39,7 +40,7 @@ export function GeneralInfoSection() {
         }
         variant="unstyled"
       >
-        <div className="grid grid-cols-2 gap-12">
+        <div className="grid grid-cols-2 gap-24">
           <Stack gap="sm">
             <div className="grid form-grid gap-x-6 gap-y-2">
               <ProductTypeRadioGroup />
@@ -57,7 +58,6 @@ export function GeneralInfoSection() {
           name="description"
           control={control}
           label="Mô tả"
-          variant="underline"
           autosize
           minRows={2}
           placeholder="Nhập mô tả sản phẩm"
@@ -75,8 +75,8 @@ function ProductTypeRadioGroup() {
       <InputLabel title="Loại sản phẩm" withAsterisk />
       <Radio.Group name="productType" control={control}>
         <Group gap="md" wrap="nowrap">
-          <Radio.Item value={ProductType.GOODS} label="Hàng hóa" color="cyan" />
-          <Radio.Item value={ProductType.SERVICE} label="Dịch vụ" color="cyan" />
+          <Radio.Item value={ProductType.GOODS} label="Hàng hóa" />
+          <Radio.Item value={ProductType.SERVICE} label="Dịch vụ" />
         </Group>
       </Radio.Group>
     </div>
@@ -94,7 +94,7 @@ function GoodsTypeRadioGroup() {
 
   return (
     <div className="xl:contents">
-      <InputLabel title="Loại sản phẩm" withAsterisk />
+      <InputLabel title="Loại hàng hóa" withAsterisk />
       <Select
         name="productSubtype"
         control={control}

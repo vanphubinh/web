@@ -61,7 +61,7 @@ export function CreateProductForm() {
               Lưu
             </Button>
           </div>
-          <div className="px-24 py-6 h-full">
+          <div className="px-32 py-6 h-full">
             <GeneralInfoSection />
           </div>
         </Card>
