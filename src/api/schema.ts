@@ -101,6 +101,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/products/list_products": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get all products with pagination
+         * @description Get a paginated list of all products
+         */
+        get: operations["list_products"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/uoms/create_uom": {
         parameters: {
             query?: never;
@@ -180,12 +200,12 @@ export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
         /** @description Response type for a single category */
-        CategoryDto: {
+        Category: {
             /** Format: uuid */
             id: string;
             name: string;
             /** Format: uuid */
-            parent_category_id?: string | null;
+            parentCategoryId?: string | null;
         };
         CreateCategoryInput: {
             /** @description Category name */
@@ -227,17 +247,6 @@ export interface components {
              */
             uomId: string;
         };
-        /** @description Input type for creating a new product template */
-        CreateProductTemplateInput: {
-            /** Format: uuid */
-            categoryId?: string | null;
-            description?: string | null;
-            name: string;
-            productSubtype: components["schemas"]["ProductSubtype"];
-            productType: components["schemas"]["ProductType"];
-            /** Format: uuid */
-            uomId: string;
-        };
         /** @description Standard response for create operations that returns only the UUID */
         CreateResponse: {
             /** Format: uuid */
@@ -264,20 +273,22 @@ export interface components {
             per_page?: number | null;
         };
         /** @description Response type for a single product */
-        ProductDto: {
-            /** Format: double */
-            cost: number;
+        Product: {
+            category?: null | components["schemas"]["Category"];
             /** Format: uuid */
             id: string;
-            /** Format: double */
-            price: number;
+            name: string;
+            price: string;
+            productSubtype: components["schemas"]["ProductSubtype"];
             /** Format: uuid */
             productTemplateId: string;
+            productType: components["schemas"]["ProductType"];
+            uom: components["schemas"]["Uom"];
         };
         /** @enum {string} */
         ProductSubtype: "standard" | "to_print_packaging" | "printing_mould";
-        /** @description Response type for a single product template */
-        ProductTemplateDto: {
+        /** @description Response type for a single product */
+        ProductTemplate: {
             /** Format: uuid */
             categoryId?: string | null;
             description: string;
@@ -291,8 +302,8 @@ export interface components {
         };
         /** @enum {string} */
         ProductType: "goods" | "service";
-        /** @description Response type for a single UOM */
-        UomDto: {
+        /** @description Response type for a single unit of measurement */
+        Uom: {
             /** Format: uuid */
             id: string;
             name: string;
@@ -300,7 +311,7 @@ export interface components {
     };
     responses: {
         /** @description Response type for a single category */
-        CategoryDto: {
+        Category: {
             headers: {
                 [name: string]: unknown;
             };
@@ -310,7 +321,7 @@ export interface components {
                     id: string;
                     name: string;
                     /** Format: uuid */
-                    parent_category_id?: string | null;
+                    parentCategoryId?: string | null;
                 };
             };
         };
@@ -344,25 +355,27 @@ export interface components {
             };
         };
         /** @description Response type for a single product */
-        ProductDto: {
+        Product: {
             headers: {
                 [name: string]: unknown;
             };
             content: {
                 "application/json": {
-                    /** Format: double */
-                    cost: number;
+                    category?: null | components["schemas"]["Category"];
                     /** Format: uuid */
                     id: string;
-                    /** Format: double */
-                    price: number;
+                    name: string;
+                    price: string;
+                    productSubtype: components["schemas"]["ProductSubtype"];
                     /** Format: uuid */
                     productTemplateId: string;
+                    productType: components["schemas"]["ProductType"];
+                    uom: components["schemas"]["Uom"];
                 };
             };
         };
-        /** @description Response type for a single product template */
-        ProductTemplateDto: {
+        /** @description Response type for a single product */
+        ProductTemplate: {
             headers: {
                 [name: string]: unknown;
             };
@@ -381,8 +394,8 @@ export interface components {
                 };
             };
         };
-        /** @description Response type for a single UOM */
-        UomDto: {
+        /** @description Response type for a single unit of measurement */
+        Uom: {
             headers: {
                 [name: string]: unknown;
             };
@@ -480,7 +493,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["CategoryDto"];
+                    "application/json": components["schemas"]["Category"];
                 };
             };
             /** @description Category not found */
@@ -505,7 +518,7 @@ export interface operations {
                 /** @description Page number */
                 page?: number;
                 /** @description Items per page */
-                page_size?: number;
+                per_page?: number;
             };
             header?: never;
             path?: never;
@@ -520,7 +533,7 @@ export interface operations {
                 };
                 content: {
                     "application/json": {
-                        data: components["schemas"]["CategoryDto"][];
+                        data: components["schemas"]["Category"][];
                         meta: components["schemas"]["PaginationMeta"];
                     };
                 };
@@ -559,6 +572,41 @@ export interface operations {
                 };
                 content?: never;
             };
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    list_products: {
+        parameters: {
+            query?: {
+                /** @description Page number for pagination */
+                page?: number;
+                /** @description Number of items per page */
+                per_page?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Pagination response - a generic wrapper for paginated data */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["Product"][];
+                        meta: components["schemas"]["PaginationMeta"];
+                    };
+                };
+            };
+            /** @description Internal server error */
             500: {
                 headers: {
                     [name: string]: unknown;
@@ -648,7 +696,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["UomDto"];
+                    "application/json": components["schemas"]["Uom"];
                 };
             };
             /** @description UOM not found */
@@ -673,7 +721,7 @@ export interface operations {
                 /** @description Page number for pagination */
                 page?: number;
                 /** @description Number of items per page */
-                page_size?: number;
+                per_page?: number;
             };
             header?: never;
             path?: never;
@@ -688,7 +736,7 @@ export interface operations {
                 };
                 content: {
                     "application/json": {
-                        data: components["schemas"]["UomDto"][];
+                        data: components["schemas"]["Uom"][];
                         meta: components["schemas"]["PaginationMeta"];
                     };
                 };

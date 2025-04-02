@@ -14,7 +14,7 @@ export function UomAsyncSelect<T extends FieldValues>(
     {
       query: {
         page: 1,
-        page_size: 30,
+        per_page: 30,
       },
     },
     {

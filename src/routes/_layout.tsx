@@ -10,7 +10,7 @@ function Layout() {
   return (
     <AppShell
       navbar={{
-        width: 245,
+        width: 285,
         breakpoint: 'sm',
       }}
       padding="xs"

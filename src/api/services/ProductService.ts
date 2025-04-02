@@ -4,9 +4,9 @@
  */
 
 import type { paths } from "../schema";
-import type { AreAllOptional, MutationFiltersByMutationKey, MutationFiltersByParameters, MutationVariables, RequestFnResponse, ServiceOperationMutationFnOptions, ServiceOperationMutationKey, ServiceOperationUseMutationOptions } from "@openapi-qraft/tanstack-query-react-types";
-import type { UseMutationResult } from "@tanstack/react-query";
-import type { Mutation, MutationState } from "@tanstack/query-core";
+import type { AreAllOptional, InvalidateQueryFilters, MutationFiltersByMutationKey, MutationFiltersByParameters, MutationVariables, OperationInfiniteData, PartialParameters, QueryFiltersByParameters, QueryFiltersByQueryKey, QueryFnOptionsByParameters, QueryFnOptionsByQueryKey, RequestFnResponse, ServiceOperationEnsureInfiniteQueryDataOptions, ServiceOperationEnsureQueryDataOptions, ServiceOperationFetchInfiniteQueryOptions, ServiceOperationFetchQueryOptions, ServiceOperationInfiniteQueryKey, ServiceOperationMutationFnOptions, ServiceOperationMutationKey, ServiceOperationQueryKey, ServiceOperationUseMutationOptions, UseQueryOptionsForUseQueries, UseQueryOptionsForUseSuspenseQuery, WithOptional } from "@openapi-qraft/tanstack-query-react-types";
+import type { DefinedInitialDataInfiniteOptions, DefinedInitialDataOptions, DefinedUseInfiniteQueryResult, DefinedUseQueryResult, UndefinedInitialDataInfiniteOptions, UndefinedInitialDataOptions, UseInfiniteQueryResult, UseMutationResult, UseQueryResult, UseSuspenseInfiniteQueryOptions, UseSuspenseInfiniteQueryResult, UseSuspenseQueryOptions, UseSuspenseQueryResult } from "@tanstack/react-query";
+import type { CancelOptions, InfiniteQueryPageParamsOptions, InvalidateOptions, Mutation, MutationState, NoInfer, QueryState, RefetchOptions, ResetOptions, SetDataOptions, Updater } from "@tanstack/query-core";
 export interface ProductService {
     /**
      * @summary Create a new product
@@ -121,6 +121,379 @@ export interface ProductService {
             body: CreateProductBody;
         };
     };
+    /**
+     * @summary Get all products with pagination
+     * @description Get a paginated list of all products
+     */
+    listProducts: {
+        /**
+         * @summary Get all products with pagination
+         * @description Get a paginated list of all products
+         */
+        cancelQueries<TInfinite extends boolean = false>(filters?: QueryFiltersByParameters<ListProductsSchema, ListProductsData, TInfinite, ListProductsParameters, ListProductsError> | QueryFiltersByQueryKey<ListProductsSchema, ListProductsData, TInfinite, ListProductsParameters, ListProductsError>, options?: CancelOptions): Promise<void>;
+        /**
+         * @summary Get all products with pagination
+         * @description Get a paginated list of all products
+         */
+        getQueryKey(parameters: ListProductsParameters | void): ServiceOperationQueryKey<ListProductsSchema, ListProductsParameters>;
+        /**
+         * Performs asynchronous data fetching, manages loading states and error handling.
+         *
+         * @summary Get all products with pagination
+         * @description Get a paginated list of all products
+         * @see {@link https://openapi-qraft.github.io/openapi-qraft/docs/hooks/useQuery|`useQuery(...)` documentation}
+         * @example Query without parameters
+         * ```ts
+         * const { data, isLoading } = qraft.productService.listProducts.useQuery()
+         * ```
+         * @example Query with parameters
+         * ```ts
+         * const { data, isLoading } = qraft.productService.listProducts.useQuery({
+         *     query: {
+         *         page: page
+         *     }
+         * })
+         * ```
+         */
+        useQuery<TData = ListProductsData>(parameters: ServiceOperationQueryKey<ListProductsSchema, ListProductsParameters> | (ListProductsParameters | void), options?: Omit<UndefinedInitialDataOptions<ListProductsData, ListProductsError, TData, ServiceOperationQueryKey<ListProductsSchema, ListProductsParameters>>, "queryKey">): UseQueryResult<TData, ListProductsError | Error>;
+        /**
+         * Performs asynchronous data fetching, manages loading states and error handling.
+         *
+         * @summary Get all products with pagination
+         * @description Get a paginated list of all products
+         * @see {@link https://openapi-qraft.github.io/openapi-qraft/docs/hooks/useQuery|`useQuery(...)` documentation}
+         * @example Query without parameters
+         * ```ts
+         * const { data, isLoading } = qraft.productService.listProducts.useQuery()
+         * ```
+         * @example Query with parameters
+         * ```ts
+         * const { data, isLoading } = qraft.productService.listProducts.useQuery({
+         *     query: {
+         *         page: page
+         *     }
+         * })
+         * ```
+         */
+        useQuery<TData = ListProductsData>(parameters: ServiceOperationQueryKey<ListProductsSchema, ListProductsParameters> | (ListProductsParameters | void), options: Omit<DefinedInitialDataOptions<ListProductsData, ListProductsError, TData, ServiceOperationQueryKey<ListProductsSchema, ListProductsParameters>>, "queryKey">): DefinedUseQueryResult<TData, ListProductsError | Error>;
+        /**
+         * @summary Get all products with pagination
+         * @description Get a paginated list of all products
+         */
+        fetchInfiniteQuery<TPageParam extends ListProductsParameters>(options: ServiceOperationFetchInfiniteQueryOptions<ListProductsSchema, ListProductsData, ListProductsParameters, TPageParam, ListProductsError>): Promise<OperationInfiniteData<ListProductsData, ListProductsParameters>>;
+        /**
+         * @summary Get all products with pagination
+         * @description Get a paginated list of all products
+         */
+        prefetchInfiniteQuery<TPageParam extends ListProductsParameters>(options: ServiceOperationFetchInfiniteQueryOptions<ListProductsSchema, ListProductsData, ListProductsParameters, TPageParam, ListProductsError>): Promise<void>;
+        /**
+         * @summary Get all products with pagination
+         * @description Get a paginated list of all products
+         */
+        ensureInfiniteQueryData<TPageParam extends ListProductsParameters>(options: ServiceOperationEnsureInfiniteQueryDataOptions<ListProductsSchema, ListProductsData, ListProductsParameters, TPageParam, ListProductsError>): Promise<OperationInfiniteData<ListProductsData, ListProductsParameters>>;
+        /**
+         * @summary Get all products with pagination
+         * @description Get a paginated list of all products
+         */
+        fetchQuery(options: ServiceOperationFetchQueryOptions<ListProductsSchema, ListProductsData, ListProductsParameters, ListProductsError> | void): Promise<ListProductsData>;
+        /**
+         * @summary Get all products with pagination
+         * @description Get a paginated list of all products
+         */
+        prefetchQuery(options: ServiceOperationFetchQueryOptions<ListProductsSchema, ListProductsData, ListProductsParameters, ListProductsError> | void): Promise<void>;
+        /**
+         * @summary Get all products with pagination
+         * @description Get a paginated list of all products
+         */
+        ensureQueryData(options: ServiceOperationEnsureQueryDataOptions<ListProductsSchema, ListProductsData, ListProductsParameters, ListProductsError> | void): Promise<ListProductsData>;
+        /**
+         * @summary Get all products with pagination
+         * @description Get a paginated list of all products
+         */
+        getInfiniteQueryData(parameters: ServiceOperationInfiniteQueryKey<ListProductsSchema, ListProductsParameters> | (ListProductsParameters | void)): OperationInfiniteData<ListProductsData, ListProductsParameters> | undefined;
+        /**
+         * @summary Get all products with pagination
+         * @description Get a paginated list of all products
+         */
+        getQueriesData<TInfinite extends boolean = false>(filters?: QueryFiltersByParameters<ListProductsSchema, ListProductsData, TInfinite, ListProductsParameters, ListProductsError> | QueryFiltersByQueryKey<ListProductsSchema, ListProductsData, TInfinite, ListProductsParameters, ListProductsError>): TInfinite extends true ? Array<[
+            queryKey: ServiceOperationInfiniteQueryKey<ListProductsSchema, ListProductsParameters>,
+            data: NoInfer<OperationInfiniteData<ListProductsData, ListProductsParameters>> | undefined
+        ]> : Array<[
+            queryKey: ServiceOperationQueryKey<ListProductsSchema, ListProductsParameters>,
+            data: ListProductsData | undefined
+        ]>;
+        /**
+         * @summary Get all products with pagination
+         * @description Get a paginated list of all products
+         */
+        getQueryData(parameters: ServiceOperationQueryKey<ListProductsSchema, ListProductsParameters> | (ListProductsParameters | void)): ListProductsData | undefined;
+        /**
+         * @summary Get all products with pagination
+         * @description Get a paginated list of all products
+         */
+        getQueryState(parameters: ServiceOperationQueryKey<ListProductsSchema, ListProductsParameters> | (ListProductsParameters | void)): QueryState<ListProductsData, ListProductsError> | undefined;
+        /**
+         * @summary Get all products with pagination
+         * @description Get a paginated list of all products
+         */
+        getInfiniteQueryState(parameters: ListProductsParameters | ServiceOperationInfiniteQueryKey<ListProductsSchema, ListProductsParameters> | void): QueryState<OperationInfiniteData<ListProductsData, ListProductsParameters>, ListProductsError> | undefined;
+        /**
+         * @summary Get all products with pagination
+         * @description Get a paginated list of all products
+         */
+        invalidateQueries<TInfinite extends boolean = false>(filters?: InvalidateQueryFilters<ListProductsSchema, ListProductsData, TInfinite, ListProductsParameters, ListProductsError>, options?: InvalidateOptions): Promise<void>;
+        /**
+         * @summary Get all products with pagination
+         * @description Get a paginated list of all products
+         */
+        isFetching<TInfinite extends boolean = false>(filters?: QueryFiltersByParameters<ListProductsSchema, ListProductsData, TInfinite, ListProductsParameters, ListProductsError> | QueryFiltersByQueryKey<ListProductsSchema, ListProductsData, TInfinite, ListProductsParameters, ListProductsError>): number;
+        /**
+         * @summary Get all products with pagination
+         * @description Get a paginated list of all products
+         */
+        <TMeta extends Record<string, any>, TSignal extends AbortSignal = AbortSignal>(options: QueryFnOptionsByQueryKey<ListProductsSchema, ListProductsParameters, TMeta, TSignal> | (QueryFnOptionsByParameters<ListProductsParameters, TMeta, TSignal> | void), client?: (schema: ListProductsSchema, options: {
+            parameters: ListProductsParameters;
+            signal?: TSignal;
+            meta?: TMeta;
+        }) => Promise<RequestFnResponse<ListProductsData, ListProductsError>>): Promise<RequestFnResponse<ListProductsData, ListProductsError>>;
+        /**
+         * @summary Get all products with pagination
+         * @description Get a paginated list of all products
+         */
+        refetchQueries<TInfinite extends boolean = false>(filters?: QueryFiltersByParameters<ListProductsSchema, ListProductsData, TInfinite, ListProductsParameters, ListProductsError> | QueryFiltersByQueryKey<ListProductsSchema, ListProductsData, TInfinite, ListProductsParameters, ListProductsError>, options?: RefetchOptions): Promise<void>;
+        /**
+         * @summary Get all products with pagination
+         * @description Get a paginated list of all products
+         */
+        removeQueries<TInfinite extends boolean = false>(filters?: QueryFiltersByParameters<ListProductsSchema, ListProductsData, TInfinite, ListProductsParameters, ListProductsError> | QueryFiltersByQueryKey<ListProductsSchema, ListProductsData, TInfinite, ListProductsParameters, ListProductsError>): void;
+        /**
+         * @summary Get all products with pagination
+         * @description Get a paginated list of all products
+         */
+        resetQueries<TInfinite extends boolean = false>(filters?: QueryFiltersByParameters<ListProductsSchema, ListProductsData, TInfinite, ListProductsParameters, ListProductsError> | QueryFiltersByQueryKey<ListProductsSchema, ListProductsData, TInfinite, ListProductsParameters, ListProductsError>, options?: ResetOptions): Promise<void>;
+        /**
+         * @summary Get all products with pagination
+         * @description Get a paginated list of all products
+         */
+        setInfiniteQueryData(parameters: ListProductsParameters | ServiceOperationInfiniteQueryKey<ListProductsSchema, ListProductsParameters>, updater: Updater<NoInfer<OperationInfiniteData<ListProductsData, ListProductsParameters>> | undefined, NoInfer<OperationInfiniteData<ListProductsData, ListProductsParameters>> | undefined>, options?: SetDataOptions): OperationInfiniteData<ListProductsData, ListProductsParameters> | undefined;
+        /**
+         * @summary Get all products with pagination
+         * @description Get a paginated list of all products
+         */
+        setQueriesData<TInfinite extends boolean = false>(filters: QueryFiltersByParameters<ListProductsSchema, ListProductsData, TInfinite, ListProductsParameters, ListProductsError> | QueryFiltersByQueryKey<ListProductsSchema, ListProductsData, TInfinite, ListProductsParameters, ListProductsError>, updater: Updater<NoInfer<ListProductsData> | undefined, NoInfer<ListProductsData> | undefined>, options?: SetDataOptions): Array<ListProductsData | undefined>;
+        /**
+         * @summary Get all products with pagination
+         * @description Get a paginated list of all products
+         */
+        setQueryData(parameters: (ListProductsParameters | undefined) | ServiceOperationQueryKey<ListProductsSchema, ListProductsParameters>, updater: Updater<NoInfer<ListProductsData> | undefined, NoInfer<ListProductsData> | undefined>, options?: SetDataOptions): ListProductsData | undefined;
+        /**
+         * @summary Get all products with pagination
+         * @description Get a paginated list of all products
+         */
+        getInfiniteQueryKey(parameters: ListProductsParameters | void): ServiceOperationInfiniteQueryKey<ListProductsSchema, ListProductsParameters>;
+        /**
+         * Performs asynchronous data fetching with support for infinite scrolling scenarios.
+         * Manages paginated data and provides utilities for fetching additional pages.
+         *
+         * @see {@link https://openapi-qraft.github.io/openapi-qraft/docs/hooks/useInfiniteQuery|`useInfiniteQuery(...)` documentation}
+         *
+         * @example Infinite Query
+         * ```ts
+         * const { data, isLoading, fetchNextPage } = qraft.productService.listProducts.useInfiniteQuery({}, {
+         *     initialPageParam: {
+         *         query: {
+         *             page: initialPage
+         *         }
+         *     },
+         *     getNextPageParam: (lastPage, allPages, lastPageParam, allPageParams) => getNextPageParams(lastPage)
+         * })
+         *
+         * console.log(data);
+         * fetchNextPage(); // Fetch the next page
+         * ```
+         */
+        useInfiniteQuery<TPageParam extends ListProductsParameters, TQueryFnData = ListProductsData, TData = OperationInfiniteData<TQueryFnData, ListProductsParameters>>(parameters: ServiceOperationInfiniteQueryKey<ListProductsSchema, ListProductsParameters> | (ListProductsParameters | void), options: Omit<UndefinedInitialDataInfiniteOptions<TQueryFnData, ListProductsError, TData, ServiceOperationInfiniteQueryKey<ListProductsSchema, ListProductsParameters>, PartialParameters<TPageParam>>, "queryKey" | "getPreviousPageParam" | "getNextPageParam" | "initialPageParam"> & InfiniteQueryPageParamsOptions<TQueryFnData, PartialParameters<TPageParam>>): UseInfiniteQueryResult<TData, ListProductsError | Error>;
+        /**
+         * Performs asynchronous data fetching with support for infinite scrolling scenarios.
+         * Manages paginated data and provides utilities for fetching additional pages.
+         *
+         * @see {@link https://openapi-qraft.github.io/openapi-qraft/docs/hooks/useInfiniteQuery|`useInfiniteQuery(...)` documentation}
+         *
+         * @example Infinite Query
+         * ```ts
+         * const { data, isLoading, fetchNextPage } = qraft.productService.listProducts.useInfiniteQuery({}, {
+         *     initialPageParam: {
+         *         query: {
+         *             page: initialPage
+         *         }
+         *     },
+         *     getNextPageParam: (lastPage, allPages, lastPageParam, allPageParams) => getNextPageParams(lastPage)
+         * })
+         *
+         * console.log(data);
+         * fetchNextPage(); // Fetch the next page
+         * ```
+         */
+        useInfiniteQuery<TPageParam extends ListProductsParameters, TQueryFnData = ListProductsData, TData = OperationInfiniteData<TQueryFnData, ListProductsParameters>>(parameters: ServiceOperationInfiniteQueryKey<ListProductsSchema, ListProductsParameters> | (ListProductsParameters | void), options: Omit<DefinedInitialDataInfiniteOptions<TQueryFnData, ListProductsError, TData, ServiceOperationInfiniteQueryKey<ListProductsSchema, ListProductsParameters>, PartialParameters<TPageParam>>, "queryKey" | "getPreviousPageParam" | "getNextPageParam" | "initialPageParam"> & InfiniteQueryPageParamsOptions<ListProductsData, PartialParameters<TPageParam>>): DefinedUseInfiniteQueryResult<TData, ListProductsError | Error>;
+        /**
+         * Monitors the number of queries currently fetching, matching the provided filters.
+         * Useful for creating loading indicators or performing actions based on active requests.
+         *
+         * @see {@link https://openapi-qraft.github.io/openapi-qraft/docs/hooks/useIsFetching|`useIsFetching(...)` documentation}
+         * @example Checks the total number of queries fetching from the specified service method,
+         * both normal and infinite. If no parameters are provided, no filtering is applied.
+         * ```ts
+         * const listProductsTotal = qraft.productService.listProducts.useIsFetching()
+         * ```
+         * @example Checks the number of normal queries fetching with the specified parameters.
+         * ```ts
+         * const listProductsByParametersTotal = qraft.productService.listProducts.useIsFetching({
+         *     infinite: false,
+         *     parameters: {
+         *         query: {
+         *             page: page
+         *         }
+         *     }
+         * })
+         * ```
+         */
+        useIsFetching<TInfinite extends boolean = false>(filters?: QueryFiltersByParameters<ListProductsSchema, ListProductsData, TInfinite, ListProductsParameters, ListProductsError> | QueryFiltersByQueryKey<ListProductsSchema, ListProductsData, TInfinite, ListProductsParameters, ListProductsError>): number;
+        /**
+         * Allows you to execute multiple asynchronous data fetching operations concurrently. This is especially useful for managing complex data dependencies in parallel.
+         *
+         * @summary Get all products with pagination
+         * @description Get a paginated list of all products
+         * @see {@link https://openapi-qraft.github.io/openapi-qraft/docs/hooks/useQueries|`useQueries(...)` documentation}
+         * @example Multiple queries. Returns `data`, `error`, `isSuccess` and other properties.
+         * ```ts
+         * const listProductsResults = qraft.productService.listProducts.useQueries({
+         *     queries: [
+         *         {
+         *             query: {
+         *                 page: page1
+         *             }
+         *         },
+         *         {
+         *             query: {
+         *                 page: page2
+         *             }
+         *         }
+         *     ]
+         * });
+         * listProductsResults.forEach(({ isSuccess, data, error }) => console.log({ isSuccess, data, error }));
+         * ```
+         * @example Combined results. Only the data will be returned.
+         * ```ts
+         * const listProductsCombinedResults = qraft.productService.listProducts.useQueries({
+         *     combine: results => results.map(result => result.data),
+         *     queries: [
+         *         {
+         *             query: {
+         *                 page: page1
+         *             }
+         *         },
+         *         {
+         *             query: {
+         *                 page: page2
+         *             }
+         *         }
+         *     ]
+         * });
+         * listProductsCombinedResults.forEach(data => console.log({ data }));
+         * ```
+         */
+        useQueries<T extends Array<UseQueryOptionsForUseQueries<ListProductsSchema, ListProductsParameters, ListProductsData, ListProductsError>>, TCombinedResult = Array<UseQueryResult<ListProductsData, ListProductsError>>>(options: {
+            queries: T;
+            combine?: (results: Array<UseQueryResult<ListProductsData, ListProductsError>>) => TCombinedResult;
+        }): TCombinedResult;
+        /**
+         * @summary Get all products with pagination
+         * @description Get a paginated list of all products
+         */
+        getQueryKey(parameters: ListProductsParameters | void): ServiceOperationQueryKey<ListProductsSchema, ListProductsParameters>;
+        /**
+         * Performs asynchronous data fetching, manages loading states and error handling.
+         *
+         * @summary Get all products with pagination
+         * @description Get a paginated list of all products
+         * @see {@link https://openapi-qraft.github.io/openapi-qraft/docs/hooks/useQuery|`useQuery(...)` documentation}
+         * @example Query without parameters
+         * ```ts
+         * const { data, isLoading } = qraft.productService.listProducts.useQuery()
+         * ```
+         * @example Query with parameters
+         * ```ts
+         * const { data, isLoading } = qraft.productService.listProducts.useQuery({
+         *     query: {
+         *         page: page
+         *     }
+         * })
+         * ```
+         */
+        useQuery<TData = ListProductsData>(parameters: ServiceOperationQueryKey<ListProductsSchema, ListProductsParameters> | (ListProductsParameters | void), options?: Omit<UndefinedInitialDataOptions<ListProductsData, ListProductsError, TData, ServiceOperationQueryKey<ListProductsSchema, ListProductsParameters>>, "queryKey">): UseQueryResult<TData, ListProductsError | Error>;
+        /**
+         * Performs asynchronous data fetching, manages loading states and error handling.
+         *
+         * @summary Get all products with pagination
+         * @description Get a paginated list of all products
+         * @see {@link https://openapi-qraft.github.io/openapi-qraft/docs/hooks/useQuery|`useQuery(...)` documentation}
+         * @example Query without parameters
+         * ```ts
+         * const { data, isLoading } = qraft.productService.listProducts.useQuery()
+         * ```
+         * @example Query with parameters
+         * ```ts
+         * const { data, isLoading } = qraft.productService.listProducts.useQuery({
+         *     query: {
+         *         page: page
+         *     }
+         * })
+         * ```
+         */
+        useQuery<TData = ListProductsData>(parameters: ServiceOperationQueryKey<ListProductsSchema, ListProductsParameters> | (ListProductsParameters | void), options: Omit<DefinedInitialDataOptions<ListProductsData, ListProductsError, TData, ServiceOperationQueryKey<ListProductsSchema, ListProductsParameters>>, "queryKey">): DefinedUseQueryResult<TData, ListProductsError | Error>;
+        /**
+         * Performs asynchronous data fetching with support for infinite scrolling scenarios.
+         * Manages paginated data and provides utilities for fetching additional pages.
+         * It functions similarly to `useInfiniteQuery`, but with added support for React Suspense.
+         *
+         * @see {@link https://openapi-qraft.github.io/openapi-qraft/docs/hooks/useSuspenseInfiniteQuery|`useSuspenseInfiniteQuery(...)` documentation}
+         *
+         * @example Suspense Infinite Query
+         * ```ts
+         * const { data, isLoading, fetchNextPage } = qraft.productService.listProducts.useSuspenseInfiniteQuery({}, {
+         *     initialPageParam: {
+         *         query: {
+         *             page: initialPage
+         *         }
+         *     },
+         *     getNextPageParam: (lastPage, allPages, lastPageParam, allPageParams) => getNextPageParams(lastPage)
+         * })
+         *
+         * console.log(data);
+         * fetchNextPage(); // Fetch the next page
+         * ```
+         */
+        useSuspenseInfiniteQuery<TPageParam extends ListProductsParameters, TData = ListProductsData>(parameters: ServiceOperationInfiniteQueryKey<ListProductsSchema, ListProductsParameters> | (ListProductsParameters | void), options: Omit<UseSuspenseInfiniteQueryOptions<ListProductsData, ListProductsError, OperationInfiniteData<TData, ListProductsParameters>, ListProductsData, ServiceOperationInfiniteQueryKey<ListProductsSchema, ListProductsParameters>, PartialParameters<TPageParam>>, "queryKey" | "getPreviousPageParam" | "getNextPageParam" | "initialPageParam"> & InfiniteQueryPageParamsOptions<ListProductsData, PartialParameters<TPageParam>>): UseSuspenseInfiniteQueryResult<OperationInfiniteData<TData, ListProductsParameters>, ListProductsError | Error>;
+        /**
+         * @summary Get all products with pagination
+         * @description Get a paginated list of all products
+         */
+        useSuspenseQueries<T extends Array<UseQueryOptionsForUseSuspenseQuery<ListProductsSchema, ListProductsParameters, ListProductsData, ListProductsError>>, TCombinedResult = Array<UseSuspenseQueryResult<ListProductsData, ListProductsError>>>(options: {
+            queries: T;
+            combine?: (results: Array<WithOptional<UseSuspenseQueryResult<ListProductsData, ListProductsError>, "data">>) => TCombinedResult;
+        }): TCombinedResult;
+        /**
+         * @summary Get all products with pagination
+         * @description Get a paginated list of all products
+         */
+        useSuspenseQuery<TData = ListProductsData>(parameters: ServiceOperationQueryKey<ListProductsSchema, ListProductsParameters> | (ListProductsParameters | void), options?: Omit<UseSuspenseQueryOptions<ListProductsData, ListProductsError, TData, ServiceOperationQueryKey<ListProductsSchema, ListProductsParameters>>, "queryKey">): UseSuspenseQueryResult<TData, ListProductsError | Error>;
+        schema: ListProductsSchema;
+        types: {
+            parameters: ListProductsParameters;
+            data: ListProductsData;
+            error: ListProductsError;
+        };
+    };
 }
 export const productService: {
     /**
@@ -136,12 +509,28 @@ export const productService: {
             ];
         };
     };
+    /**
+     * @summary Get all products with pagination
+     * @description Get a paginated list of all products
+     */
+    listProducts: {
+        schema: {
+            method: "get";
+            url: "/products/list_products";
+        };
+    };
 } = {
     createProduct: {
         schema: {
             method: "post",
             url: "/products/create_product",
             mediaType: ["application/json"]
+        }
+    },
+    listProducts: {
+        schema: {
+            method: "get",
+            url: "/products/list_products"
         }
     }
 };
@@ -156,3 +545,10 @@ type CreateProductParameters = {};
 type CreateProductData = unknown;
 type CreateProductError = unknown;
 type CreateProductBody = NonNullable<paths["/products/create_product"]["post"]["requestBody"]>["content"]["application/json"];
+type ListProductsSchema = {
+    method: "get";
+    url: "/products/list_products";
+};
+type ListProductsParameters = paths["/products/list_products"]["get"]["parameters"];
+type ListProductsData = paths["/products/list_products"]["get"]["responses"]["200"]["content"]["application/json"];
+type ListProductsError = unknown;

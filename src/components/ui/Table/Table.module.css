@@ -11,12 +11,12 @@
 }
 
 .td {
-  padding: rem(0) rem(24px);
+  padding: rem(0) rem(18px);
 }
 
 .th {
   font-size: 12px;
-  padding: rem(0) rem(24px);
+  padding: rem(0) rem(18px);
   color: var(--mantine-color-gray-7);
   font-weight: 600;
 }

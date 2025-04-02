@@ -2,7 +2,7 @@ import { InferOutput, minLength, number, object, optional, pipe, string } from '
 
 export const ListPaginatedUomsParamsSchema = object({
   page: optional(number(), 1),
-  page_size: optional(number(), 30),
+  per_page: optional(number(), 30),
 });
 
 export const CreateUomSchema = object({
